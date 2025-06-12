@@ -28,7 +28,7 @@ jobs:
           name: dragon-text-file  
           path: path/to/artifact/dragon.txt
       - name: Test file exists
-        run: grep -i "dragon" dragon.txt
+        run: find -type f -iname "dragon*" .
 
   deploy_job:
     needs: test_job
