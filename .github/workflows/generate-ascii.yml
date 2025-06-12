@@ -8,16 +8,30 @@ jobs:
     steps:
       - name: Install Cowsay Program
         run: sudo apt-get install cowsay -y
+        run: mkdir -p path/to/artifact
 
       - name: Execute Cowsay command
-        run: cowsay -f dragon "Run to the cover/...." >> dragon.txt
+        run: cowsay -f dragon "Run to the cover/...." >> path/to/artifact/dragon.txt
+      - name: Upload Dragon.txt file
+        uses: actions/upload-artifact@v4
+        with:
+          name: dragon-text-file
+          path: path/to/artifact/dragon.txt
+        
   test_job:
+    needs: build_job
     runs-on: ubuntu-latest
     steps:
+      - name: Download Dragon.txt file
+        uses: actions/download-artifact@v4
+        with:
+          name: dragon-text-file  
+          path: path/to/artifact/dragon.txt
       - name: Test file exists
         run: grep -i "dragon" dragon.txt
 
   deploy_job:
+    needs: test_job
     runs-on: ubuntu-latest
     steps:
       - name: Read file
