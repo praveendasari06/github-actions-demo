@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Install Cowsay Program
         run: sudo apt-get install cowsay -y
-        run: mkdir -p path/to/artifact
+      - run: mkdir -p path/to/artifact
 
       - name: Execute Cowsay command
         run: cowsay -f dragon "Run to the cover/...." >> path/to/artifact/dragon.txt
