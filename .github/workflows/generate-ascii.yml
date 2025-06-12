@@ -28,13 +28,13 @@ jobs:
           name: dragon-text-file  
           path: path/to/artifact/dragon.txt
       - name: Test file exists
-        run: find -type f -iname "dragon*" .
+        run: find . -type f -iname "dragon*"
 
   deploy_job:
     needs: test_job
     runs-on: ubuntu-latest
     steps:
       - name: Read file
-        run: cat dragon.txt
+        run: cat path/to/artifact/dragon.txt
       - name: Deploy job
         run: echo "deploying ....."
