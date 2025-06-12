@@ -35,6 +35,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Read file
-        run: cat path/to/artifact/dragon.txt
+        run: ls -lrt
       - name: Deploy job
         run: echo "deploying ....."
